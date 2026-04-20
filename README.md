@@ -1,6 +1,6 @@
-;-)
-
 <!---
 Meehir5907/Meehir5907 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
+
+[![Meehir's GitHub Stats](https://github-readme-stats.vercel.app/api?username=Meehir5907)](https://github.com/anuraghazra/github-readme-stats)
