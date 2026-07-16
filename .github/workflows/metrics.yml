@@ -12,6 +12,14 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Fetch external contributed repos
+        id: auto-discover
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
+        run: |
+          discovered_repos=$(gh search prs --author Meehir5907 --merged --json repository --jq '[.[].repository.nameWithOwner | select(. | startswith("Meehir5907/") | not)] | unique | join(", ")')
+          echo "repos=$discovered_repos" >> $GITHUB_OUTPUT
+
       - uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -27,3 +35,6 @@ jobs:
           plugin_languages_sections: most-used, recently-used
           plugin_languages_recent_days: 60
           plugin_languages_recent_load: 1000
+          plugin_languages_indepth: yes
+          plugin_languages_indepth_custom: ${{ steps.auto-discover.outputs.repos }}
+          commits_authoring: Meehir Prabhakar, Meehir5907
